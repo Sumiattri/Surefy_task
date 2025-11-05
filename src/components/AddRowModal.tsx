@@ -23,8 +23,7 @@ const AddRowModal: React.FC<Props> = ({ open, onClose }) => {
   const dispatch = useDispatch();
   const columns = useSelector((state: RootState) => state.columnPrefs.visible);
 
-  // Ensure all required TableRow keys (for TS strictness)
-  const defaultFields = ["name", "email", "age", "role"]; // update if your TableRow type changes
+  const defaultFields = ["name", "email", "age", "role"];
   const allCols = Array.from(new Set([...defaultFields, ...columns]));
 
   const emptyFormObj: Record<string, string> = {};
@@ -49,14 +48,13 @@ const AddRowModal: React.FC<Props> = ({ open, onClose }) => {
       setForm((f) => ({ ...f, [col]: e.target.value }));
 
   const handleSubmit = () => {
-    // Build the new row object with correct types
     const newRow: TableRow = {
       id: `${Date.now()}_${Math.random()}`,
       name: form["name"],
       email: form["email"],
       age: Number(form["age"]),
       role: form["role"],
-      ...form, // includes custom/extra columns if any
+      ...form,
     };
     dispatch(addRow(newRow));
     onClose();

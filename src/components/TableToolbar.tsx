@@ -9,7 +9,7 @@ import FileSaver from "file-saver";
 import ManageColumnsModal from "./ManageColumnsModal";
 import { setSearch } from "../features/ui/searchSlice";
 import { setAllColumns } from "../features/ui/columnPrefsSlice";
-import AddRowModal from "./AddRowModal"; // <-- Import
+import AddRowModal from "./AddRowModal";
 
 const TableToolbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const TableToolbar: React.FC = () => {
   const search = useSelector((state: RootState) => state.search);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [addRowOpen, setAddRowOpen] = useState(false); // <-- Add this line
+  const [addRowOpen, setAddRowOpen] = useState(false);
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -88,7 +88,7 @@ const TableToolbar: React.FC = () => {
         open={modalOpen}
         onClose={() => setModalOpen(false)}
       />
-      {/* THIS IS THE KEY LINE */}
+
       <AddRowModal open={addRowOpen} onClose={() => setAddRowOpen(false)} />
     </Stack>
   );

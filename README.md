@@ -45,7 +45,6 @@ SUREFY-INTERVIEW-TASK/
 ├── src/
 │ ├── components/ # Reusable UI components
 │ │ ├── AddRowModal.tsx
-│ │ ├── ConfigDialog.tsx
 │ │ ├── DataTable.tsx
 │ │ ├── ManageColumnsModal.tsx
 │ │ ├── RawEditForm.tsx
@@ -67,9 +66,7 @@ SUREFY-INTERVIEW-TASK/
 │ │ └── table.ts
 │ │
 │ ├── declarations.d.ts # Global type declarations
-│ ├── store.ts # Redux store configuration
-│ └── theme.ts # Theme configuration (dark/light mode)
-│
+│ ├── store.ts # Redux store configuration│
 ├── .gitignore # Git ignored files
 ├── eslint.config.mjs # ESLint configuration
 ├── next.config.ts # Next.js configuration

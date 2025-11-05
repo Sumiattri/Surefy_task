@@ -9,7 +9,6 @@ import {
   Stack,
 } from "@mui/material";
 
-// You can type row as any, or preferably your TableRow type
 type Props = {
   open: boolean;
   row: any;

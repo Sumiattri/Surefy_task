@@ -1,7 +1,5 @@
-// src/types/table.ts
-
 export interface TableRow {
-  id: string; // unique row ID
+  id: string;
   name: string;
   email: string;
   age: number;

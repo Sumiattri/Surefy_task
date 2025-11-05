@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TableRow } from "../../types/table";
 
-// Initial dummy data
 const initialData: TableRow[] = [
   {
     id: "1",
@@ -29,7 +28,6 @@ const tableSlice = createSlice({
       state.rows = action.payload;
     },
     replaceRows(state, action: PayloadAction<TableRow[]>) {
-      // Use this on CSV import if you want to guarantee replacement
       state.rows = action.payload;
     },
     addRow(state, action: PayloadAction<TableRow>) {
@@ -48,7 +46,6 @@ const tableSlice = createSlice({
     deleteRow(state, action: PayloadAction<string>) {
       state.rows = state.rows.filter((r) => r.id !== action.payload);
     },
-    // Add more as needed
   },
 });
 

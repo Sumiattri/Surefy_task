@@ -33,7 +33,7 @@ export default function RootLayout({
 function InnerLayout({ children }: { children: React.ReactNode }) {
   const themeMode = useSelector((state: RootState) => state.theme);
   const theme = createTheme({
-    palette: { mode: themeMode as PaletteMode }, // Type assertion
+    palette: { mode: themeMode as PaletteMode },
   });
 
   return (

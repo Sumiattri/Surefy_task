@@ -18,7 +18,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["columnPrefs", "table"], // <--- ADD "table"
+  whitelist: ["columnPrefs", "table"],
 };
 
 // COMBINE ONLY ONCE

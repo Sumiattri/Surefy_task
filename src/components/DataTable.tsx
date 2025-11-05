@@ -30,7 +30,7 @@ const columnLabels: { [key: string]: string } = {
 const DataTable: React.FC = () => {
   const rows = useSelector((state: RootState) => state.table.rows);
   const visible = useSelector((state: RootState) => state.columnPrefs.visible);
-  const allColumns = useSelector((state: RootState) => state.columnPrefs.all); // for modal
+  const allColumns = useSelector((state: RootState) => state.columnPrefs.all);
   const search = useSelector((state: RootState) => state.search);
 
   let processedRows = rows.filter((row) =>

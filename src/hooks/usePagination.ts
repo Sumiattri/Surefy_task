@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 export default function usePagination<T>(data: T[], rowsPerPage: number = 10) {
   const [page, setPage] = useState(0);
 
-  // When the data changes (like after CSV import), reset to first page
   useEffect(() => {
     setPage(0);
   }, [data.length]);
