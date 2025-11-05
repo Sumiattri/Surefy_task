@@ -87,6 +87,8 @@ SUREFY-INTERVIEW-TASK/
 
 ### 1. Install dependencies
 
+npm install
+
 ### 2. Run development server
 
 npm run dev
@@ -96,6 +98,7 @@ Go to [http://localhost:3000](http://localhost:3000)
 ### 3. Production build
 
 npm run build
+
 npm start
 
 ---
