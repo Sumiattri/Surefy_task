@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { setRows } from "../features/table/tableSlice";
@@ -8,21 +7,22 @@ import { Button, TextField, Stack } from "@mui/material";
 import Papa from "papaparse";
 import FileSaver from "file-saver";
 import ManageColumnsModal from "./ManageColumnsModal";
-import { useState } from "react";
 import { setSearch } from "../features/ui/searchSlice";
 import { setAllColumns } from "../features/ui/columnPrefsSlice";
+import AddRowModal from "./AddRowModal"; // <-- Import
 
 const TableToolbar: React.FC = () => {
   const dispatch = useDispatch();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const rows = useSelector((state: RootState) => state.table.rows);
-
   const search = useSelector((state: RootState) => state.search);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [addRowOpen, setAddRowOpen] = useState(false); // <-- Add this line
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
@@ -40,11 +40,8 @@ const TableToolbar: React.FC = () => {
           alert("CSV must contain name, email, age, and role columns.");
           return;
         }
-
-        // --- THIS IS THE KEY PART: set columns to CSV headers
-        const newColumns = results.meta.fields; // headers from CSV
-        dispatch(setAllColumns(newColumns)); // <--- add this
-
+        const newColumns = results.meta.fields;
+        dispatch(setAllColumns(newColumns));
         dispatch(setRows(importedRows));
       },
     });
@@ -56,9 +53,6 @@ const TableToolbar: React.FC = () => {
     FileSaver.saveAs(blob, "table_export.csv");
   };
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // (You’ll connect search later for filtering!)
   return (
     <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
       <TextField
@@ -66,7 +60,7 @@ const TableToolbar: React.FC = () => {
         size="small"
         value={search}
         onChange={(e) => dispatch(setSearch(e.target.value))}
-      />{" "}
+      />
       <Button variant="contained" onClick={() => fileInputRef.current?.click()}>
         Import CSV
       </Button>
@@ -80,6 +74,13 @@ const TableToolbar: React.FC = () => {
       <Button variant="contained" color="secondary" onClick={handleExport}>
         Export CSV
       </Button>
+      <Button
+        variant="contained"
+        color="success"
+        onClick={() => setAddRowOpen(true)}
+      >
+        Add Row
+      </Button>
       <Button variant="outlined" onClick={() => setModalOpen(true)}>
         Manage Columns
       </Button>
@@ -87,6 +88,8 @@ const TableToolbar: React.FC = () => {
         open={modalOpen}
         onClose={() => setModalOpen(false)}
       />
+      {/* THIS IS THE KEY LINE */}
+      <AddRowModal open={addRowOpen} onClose={() => setAddRowOpen(false)} />
     </Stack>
   );
 };

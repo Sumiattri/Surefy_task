@@ -1,5 +1,3 @@
-// src/features/table/tableSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TableRow } from "../../types/table";
 
@@ -30,6 +28,10 @@ const tableSlice = createSlice({
     setRows(state, action: PayloadAction<TableRow[]>) {
       state.rows = action.payload;
     },
+    replaceRows(state, action: PayloadAction<TableRow[]>) {
+      // Use this on CSV import if you want to guarantee replacement
+      state.rows = action.payload;
+    },
     addRow(state, action: PayloadAction<TableRow>) {
       state.rows.push(action.payload);
     },
@@ -39,7 +41,6 @@ const tableSlice = createSlice({
         [action.payload.col]: "",
       }));
     },
-
     updateRow(state, action: PayloadAction<TableRow>) {
       const idx = state.rows.findIndex((r) => r.id === action.payload.id);
       if (idx !== -1) state.rows[idx] = action.payload;
@@ -47,10 +48,16 @@ const tableSlice = createSlice({
     deleteRow(state, action: PayloadAction<string>) {
       state.rows = state.rows.filter((r) => r.id !== action.payload);
     },
-    // Add more as needed (for columns, persist, etc)
+    // Add more as needed
   },
 });
 
-export const { setRows, addRow, updateRow, deleteRow, addColumnToRows } =
-  tableSlice.actions;
+export const {
+  setRows,
+  replaceRows,
+  addRow,
+  updateRow,
+  deleteRow,
+  addColumnToRows,
+} = tableSlice.actions;
 export default tableSlice.reducer;
