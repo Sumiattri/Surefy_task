@@ -116,7 +116,7 @@ All preferences and changes are auto-saved in your browser.
 
 ## 📸 Demo Screenshot
 
-<img width="1440" height="900" alt="Screenshot 2025-11-05 at 05 14 16" src="https://github.com/user-attachments/assets/0cfbef89-b278-463c-8403-0b2c78da86c5" />
+<img width="1440" height="900" alt="Screenshot 2025-11-05 at 07 47 06" src="https://github.com/user-attachments/assets/5fd6604e-90b3-4233-8393-c469751b823a" />
 
 ---
 
