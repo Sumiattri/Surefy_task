@@ -116,9 +116,7 @@ All preferences and changes are auto-saved in your browser.
 
 ## 📸 Demo Screenshot
 
-![Demo Screenshot](screenshot.png)
-
-> _Add a real screenshot here of your running app!_
+<img width="1440" height="900" alt="Screenshot 2025-11-05 at 05 14 16" src="https://github.com/user-attachments/assets/0cfbef89-b278-463c-8403-0b2c78da86c5" />
 
 ---
 
