@@ -33,10 +33,32 @@ const DataTable: React.FC = () => {
   const allColumns = useSelector((state: RootState) => state.columnPrefs.all); // for modal
   const search = useSelector((state: RootState) => state.search);
 
-  const filteredRows = rows.filter((row) =>
+  let processedRows = rows.filter((row) =>
     Object.values(row).join(" ").toLowerCase().includes(search.toLowerCase())
   );
-  const { paginatedData, page, setPage } = usePagination(filteredRows, 10);
+
+  const [sortConfig, setSortConfig] = useState<{
+    key: string | null;
+    direction: "asc" | "desc";
+  }>({
+    key: null,
+    direction: "asc",
+  });
+
+  if (sortConfig.key) {
+    processedRows = [...processedRows].sort((a, b) => {
+      const av = a[sortConfig.key!] ?? "";
+      const bv = b[sortConfig.key!] ?? "";
+      if (av === bv) return 0;
+      if (sortConfig.direction === "asc") {
+        return av > bv ? 1 : -1;
+      } else {
+        return av < bv ? 1 : -1;
+      }
+    });
+  }
+
+  const { paginatedData, page, setPage } = usePagination(processedRows, 10);
 
   const dispatch = useDispatch();
   const [editOpen, setEditOpen] = useState(false);
@@ -44,6 +66,13 @@ const DataTable: React.FC = () => {
 
   const getRowKey = (row: any, idx: number) =>
     row.id && row.id !== "" ? row.id : `row-${idx}`;
+
+  const handleSort = (col: string) => {
+    setSortConfig((prev) => ({
+      key: col,
+      direction: prev.key === col && prev.direction === "asc" ? "desc" : "asc",
+    }));
+  };
 
   const onEdit = (row: TableRowType) => {
     setEditRow(row);
@@ -72,13 +101,23 @@ const DataTable: React.FC = () => {
           <TableHead>
             <TableRow>
               {visible.map((col) => (
-                <TableCell key={col}>
+                <TableCell
+                  key={col}
+                  onClick={() => handleSort(col)}
+                  sx={{ cursor: "pointer", userSelect: "none" }}
+                >
                   {columnLabels[col] ? columnLabels[col] : col}
+                  {sortConfig.key === col
+                    ? sortConfig.direction === "asc"
+                      ? " ▲"
+                      : " ▼"
+                    : ""}
                 </TableCell>
               ))}
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {paginatedData.map((row, idx) => (
               <TableRow key={getRowKey(row, idx)}>
@@ -111,7 +150,7 @@ const DataTable: React.FC = () => {
       </TableContainer>
       <TablePagination
         component="div"
-        count={filteredRows.length}
+        count={processedRows.length}
         page={page}
         onPageChange={(_, newPage) => setPage(newPage)}
         rowsPerPage={10}
