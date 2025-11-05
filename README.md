@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Dynamic Data Table Manager
 
-## Getting Started
+A modern, flexible, and interactive table management web application built with React and Next.js.  
+Designed for seamless CSV data import/export, effortless column reordering, and robust in-browser data editing—without compromise on user experience.
 
-First, run the development server:
+---
 
-```bash
+## ✨ Features
+
+- **CSV Import/Export:** One-click upload and download of tabular data.
+- **Add, Edit, Delete Rows:** Manage table data directly from the UI. No backend needed!
+- **Column Reordering:** Drag-and-drop columns to customize your workflow.
+- **Toggle, Add, and Remove Columns:** Show/hide or add new columns on the fly.
+- **Column Sorting:** Click headers to toggle sorting (ASC/DESC).
+- **Persistent State:** Column order, visibility, and data are remembered even after reload using Redux Persist.
+- **Responsive UI:** Clean, modern material design—works on laptop, tablet, or phone.
+- **Pagination & Search:** Instantly find or page through your data.
+- **Light/Dark Mode:** Instantly switch for eye comfort.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 16+ (App Router)**
+- **React 18**
+- **Redux Toolkit + Redux Persist**
+- **Material UI (MUI v5)**
+- **@hello-pangea/dnd** (drag-and-drop)
+- **papaparse** (csv)
+- **TypeScript (strict types; for maintainability)**
+
+---
+
+## 📦 Folder Structure
+
+SUREFY-INTERVIEW-TASK/
+├── .git/ # Git version control folder
+├── .next/ # Next.js build output (auto-generated)
+├── app/
+│ ├── layout.tsx # Root layout for the app
+│ └── page.tsx # Main page entry point
+├── node_modules/ # Installed dependencies
+├── public/ # Static assets (images, icons, etc.)
+├── src/
+│ ├── components/ # Reusable UI components
+│ │ ├── AddRowModal.tsx
+│ │ ├── ConfigDialog.tsx
+│ │ ├── DataTable.tsx
+│ │ ├── ManageColumnsModal.tsx
+│ │ ├── RawEditForm.tsx
+│ │ ├── TableToolbar.tsx
+│ │ └── ThemeToggle.tsx
+│ │
+│ ├── features/ # Redux slices and related logic
+│ │ ├── table/
+│ │ │ └── tableSlice.ts
+│ │ └── ui/
+│ │ ├── columnPrefsSlice.ts
+│ │ ├── searchSlice.ts
+│ │ └── themeSlice.ts
+│ │
+│ ├── hooks/ # Custom React hooks
+│ │ └── usePagination.ts
+│ │
+│ ├── types/ # TypeScript type definitions
+│ │ └── table.ts
+│ │
+│ ├── declarations.d.ts # Global type declarations
+│ ├── store.ts # Redux store configuration
+│ └── theme.ts # Theme configuration (dark/light mode)
+│
+├── .gitignore # Git ignored files
+├── eslint.config.mjs # ESLint configuration
+├── next.config.ts # Next.js configuration
+├── next-env.d.ts # Next.js TypeScript environment file
+├── package.json # Project metadata & dependencies
+├── package-lock.json # Dependency lock file
+├── tsconfig.json # TypeScript configuration
+└── README.md # Project documentation
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+### 2. Run development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run build
+npm start
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🏗️ Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Import CSV:** Click "Import CSV", upload any .csv to populate the table.
+- **Add Row:** Click "Add Row", enter data, and submit.
+- **Edit/Delete:** Use the buttons in the Actions column.
+- **Export CSV:** Instantly download the current table state.
+- **Drag Column Headers:** Rearrange as needed.
+- **Manage Columns:** Show/hide/add columns using the dialog.
+- **Search & Pagination:** Quickly search or browse large datasets.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All preferences and changes are auto-saved in your browser.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📸 Demo Screenshot
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Demo Screenshot](screenshot.png)
+
+> _Add a real screenshot here of your running app!_
+
+---
+
+## 🙋 Author
+
+**Sumit Attri**  
+[Frontend Engineer]
+
+---
+
+## 📜 License
+
+MIT License.  
+Created as part of a Surefy interview project, 2025.
+
+---
+
+> **Pro tip:** Fork this project and adapt it for inventory tracking, contacts, experimental data, or anywhere you need inline spreadsheet-like power in the browser!
