@@ -33,6 +33,7 @@ Designed for seamless CSV data import/export, effortless column reordering, and 
 
 ## 📦 Folder Structure
 
+```
 SUREFY-INTERVIEW-TASK/
 ├── .git/ # Git version control folder
 ├── .next/ # Next.js build output (auto-generated)
@@ -77,6 +78,8 @@ SUREFY-INTERVIEW-TASK/
 ├── package-lock.json # Dependency lock file
 ├── tsconfig.json # TypeScript configuration
 └── README.md # Project documentation
+
+```
 
 ---
 
