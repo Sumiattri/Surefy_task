@@ -27,9 +27,13 @@ const columnPrefsSlice = createSlice({
         state.visible.push(action.payload);
       }
     },
+    setAllColumns(state, action: PayloadAction<string[]>) {
+      state.all = action.payload;
+      state.visible = action.payload;
+    },
   },
 });
 
-export const { setVisibleColumns, resetColumns, addColumn } =
+export const { setVisibleColumns, resetColumns, addColumn, setAllColumns } =
   columnPrefsSlice.actions;
 export default columnPrefsSlice.reducer;

@@ -2,7 +2,9 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../src/store";
 import { Provider } from "react-redux";
-import { store } from "../src/store";
+import { store, persistor } from "../src/store";
+import { PersistGate } from "redux-persist/integration/react";
+
 import {
   CssBaseline,
   ThemeProvider,
@@ -19,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider store={store}>
-          <InnerLayout>{children}</InnerLayout>
+          <PersistGate loading={null} persistor={persistor}>
+            <InnerLayout>{children}</InnerLayout>
+          </PersistGate>
         </Provider>
       </body>
     </html>

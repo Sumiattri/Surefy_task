@@ -10,6 +10,7 @@ import FileSaver from "file-saver";
 import ManageColumnsModal from "./ManageColumnsModal";
 import { useState } from "react";
 import { setSearch } from "../features/ui/searchSlice";
+import { setAllColumns } from "../features/ui/columnPrefsSlice";
 
 const TableToolbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ const TableToolbar: React.FC = () => {
           alert("CSV must contain name, email, age, and role columns.");
           return;
         }
+
+        // --- THIS IS THE KEY PART: set columns to CSV headers
+        const newColumns = results.meta.fields; // headers from CSV
+        dispatch(setAllColumns(newColumns)); // <--- add this
 
         dispatch(setRows(importedRows));
       },
